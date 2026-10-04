@@ -1,0 +1,14 @@
+# Obsidian per-machine state and cache
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor leftovers
+*.tmp
+*.swp

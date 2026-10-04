@@ -1,0 +1,11 @@
+.image-embed[alt*="center"],
+.internal-embed[alt*="center"] {
+  display: flex;
+  justify-content: center;
+}
+
+img[alt*="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

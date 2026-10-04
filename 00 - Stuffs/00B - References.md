@@ -1,0 +1,13 @@
+# Useful Dumps to Steal From
+- The Hacker Recipes: https://www.thehacker.recipes/
+	- Strong on AD/internal, but has other stuff
+- HackTricks: https://hacktricks.wiki/
+	- Pretty much everything, but not as much depth as others
+- PayloadsAllTheThings: https://github.com/swisskyrepo/payloadsallthethings
+	- Has a folder-per-vuln class, with payload files underneath
+- InternalAllTheThings: https://github.com/swisskyrepo/InternalAllTheThings
+	- Same as above, but with specialized focus on AD, cloud, and internal
+- Pentest Book (six2dez): https://www.pentest-book.com/
+	- Recon-heavy gitbook
+- Red Team Notes (ired.team): https://www.ired.team/
+	- Organized red tream technique notes in a MITRE-like way; useful for tagging notes to ATT&CK

@@ -1,0 +1,1 @@
+Hashes, Kerberos, replaying, wordlists
