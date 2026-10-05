@@ -7,7 +7,7 @@ tags:
   - rpc
   - enumeration
 ---
-> *SNMP, LDAP, and RPC Enumeration:* Three protocols that leak users, groups, processes, and sometimes credentials with little or no authentication. Split out from [[Service Enumeration]] because each has a deep command set worth its own reference.
+> *SNMP, LDAP, and RPC Enumeration:* Three protocols that leak users, groups, processes, and sometimes credentials with little or no authentication. Split out from [[03B - Service Enumeration (Ports)]] because each has a deep command set worth its own reference.
 
 ## SNMP - 161/udp
 
@@ -22,7 +22,7 @@ snmp-check $IP -c public                                 # prettified summary
 ```
 
 > [!note]
-> `public` (read) and `private` (write) are the most common community strings, `onesixtyone` brute-forces others. Usernames and process lists are the two most useful subtrees. Any usernames feed [[Brute Forcing and Spraying]].
+> `public` (read) and `private` (write) are the most common community strings, `onesixtyone` brute-forces others. Usernames and process lists are the two most useful subtrees. Any usernames feed [[09B - Brute Forcing & Spraying]].
 
 ## LDAP - 389 / 636 / 3268 / 3269
 
@@ -40,7 +40,7 @@ ldapsearch -x -H ldap://$IP -b "DC=corp,DC=com" | grep -m1 -B10 pwdHistoryLength
 ```
 
 > [!note]
-> `-x` is simple (anonymous) auth. Pull the `description` and `info` attributes specifically, creds hide there. `(userAccountControl:1.2.840.113556.1.4.803:=8388608)` filters for password-not-required accounts. `windapsearch --dc-ip $IP -u user@corp.com -p pass -U` is the friendlier wrapper. Continue in [[AD Enumeration]].
+> `-x` is simple (anonymous) auth. Pull the `description` and `info` attributes specifically, creds hide there. `(userAccountControl:1.2.840.113556.1.4.803:=8388608)` filters for password-not-required accounts. `windapsearch --dc-ip $IP -u user@corp.com -p pass -U` is the friendlier wrapper. Continue in [[03D - AD Enumeration]].
 
 ## RPC - 135 / 139 / 593
 
@@ -74,7 +74,7 @@ createdomuser / setuserinfo  -- if you have write rights
 
 ## See also
 
-- [[Service Enumeration]] for the SMB workflow these sit alongside
-- [[AD Enumeration]] for where this leads on a domain
-- [[Brute Forcing and Spraying]] for the username lists you build here
-- Source: [[OSCP Field Manual]] section 2.5
+- [[03B - Service Enumeration (Ports)]] for the SMB workflow these sit alongside
+- [[03D - AD Enumeration]] for where this leads on a domain
+- [[09B - Brute Forcing & Spraying]] for the username lists you build here
+- Source: *OSCP Field Manual* section 2.5

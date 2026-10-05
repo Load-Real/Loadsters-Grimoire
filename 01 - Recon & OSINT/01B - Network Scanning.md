@@ -6,7 +6,7 @@ tags:
   - enumeration
 ---
 
-> *Host and Service Discovery:* How to go from an IP or a subnet to a mapped set of open ports and versioned services. This is the first note you open on any engagement or box. The output of everything here is either a version string (feeds [[CVE Triage]]) or an interface to test creds against (feeds [[Brute Forcing and Spraying]]). Most failed boxes are failed enumeration, not failed exploitation.
+> *Host and Service Discovery:* How to go from an IP or a subnet to a mapped set of open ports and versioned services. This is the first note you open on any engagement or box. The output of everything here is either a version string (feeds [[01C - CVE Triage]]) or an interface to test creds against (feeds [[09B - Brute Forcing & Spraying]]). Most failed boxes are failed enumeration, not failed exploitation.
 
 Set the target once so every command is copy-paste safe:
 ```bash
@@ -51,7 +51,7 @@ sudo nmap -sU --top-ports 100 -T4 -oN nmap/udp.txt $IP
 ```
 
 > [!note]
-> Watch for 53 DNS, 69 TFTP, 123 NTP, 161 SNMP, 500 IKE, 2049 NFS. Routing: 161 open goes to [[SNMP LDAP RPC]], 2049 goes to [[Service Enumeration]] (NFS), 69 is `tftp get/put`.
+> Watch for 53 DNS, 69 TFTP, 123 NTP, 161 SNMP, 500 IKE, 2049 NFS. Routing: 161 open goes to [[03C - SNMP, LDAP, RPC]], 2049 goes to [[03B - Service Enumeration (Ports)]] (NFS), 69 is `tftp get/put`.
 
 ## Internal / Post-pivot Discovery
 
@@ -62,7 +62,7 @@ fping -asgq 172.16.5.0/23                                # fast alternative swee
 ```
 
 > [!note]
-> Over a SOCKS proxy you must use TCP-connect scans (`nmap -sT -Pn`), because SYN scans do not traverse a proxy. See [[Pivoting and Tunneling]]. A real route (ligolo, sshuttle) lets every scan type work unmodified.
+> Over a SOCKS proxy you must use TCP-connect scans (`nmap -sT -Pn`), because SYN scans do not traverse a proxy. See [[03G - Pivoting & Tunneling]]. A real route (ligolo, sshuttle) lets every scan type work unmodified.
 
 ## Faster Front-ends
 
@@ -91,7 +91,7 @@ sudo masscan 10.10.10.0/24 -p80,443,445 --rate=10000    # spray a few ports acro
 
 ## See Also
 
-- [[Service Enumeration]] for what to do with each open port
-- [[Web Enumeration]] when any web port is open
-- [[CVE Triage]] once you have a version string
-- Source: [[OSCP Field Manual]] section 2.0
+- [[03B - Service Enumeration (Ports)]] for what to do with each open port
+- [[02B - Web Enumeration]] when any web port is open
+- [[01C - CVE Triage]] once you have a version string
+- Source: *OSCP Field Manual* section 2.0

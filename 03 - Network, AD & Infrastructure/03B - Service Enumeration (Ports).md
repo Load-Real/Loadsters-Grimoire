@@ -5,7 +5,7 @@ tags:
   - enumeration
   - services
 ---
-> *Per-port Service Playbooks:* What to do with each open port from [[Network Scanning]]. The rule that keeps you honest, every service must yield either a version (feeds [[CVE Triage]]) or an interface to test creds against (feeds [[Brute Forcing and Spraying]]). If it gives neither yet, you have not enumerated it enough. This note is a lookup, jump to the port you are looking at.
+> *Per-port Service Playbooks:* What to do with each open port from [[01B - Network Scanning]]. The rule that keeps you honest, every service must yield either a version (feeds [[01C - CVE Triage]]) or an interface to test creds against (feeds [[09B - Brute Forcing & Spraying]]). If it gives neither yet, you have not enumerated it enough. This note is a lookup, jump to the port you are looking at.
 
 ## FTP - 21
 
@@ -18,7 +18,7 @@ wget -m --no-passive ftp://anonymous:anonymous@$IP   # mirror everything
 ```
 
 > [!note]
-> In-session: `binary` before pulling executables/archives or they corrupt, `ls -la`, `get`, `mget *`, `put <shell>`, `!ls` to run a local command, `passive` to toggle if transfers hang. Key pivot: if the FTP root is writable and maps to the web root, upload a webshell and browse to it ([[File Upload to Webshell]]).
+> In-session: `binary` before pulling executables/archives or they corrupt, `ls -la`, `get`, `mget *`, `put <shell>`, `!ls` to run a local command, `passive` to toggle if transfers hang. Key pivot: if the FTP root is writable and maps to the web root, upload a webshell and browse to it ([[02E - File Upload to Webshell]]).
 
 ## SSH - 22
 
@@ -31,7 +31,7 @@ ssh2john id_rsa > id_rsa.hash && john id_rsa.hash --wordlist=/usr/share/wordlist
 ```
 
 > [!note]
-> `chmod 600 id_rsa` before using a recovered key or SSH refuses it as too open. An encrypted key becomes a crackable hash via `ssh2john`, see [[Hash Cracking]].
+> `chmod 600 id_rsa` before using a recovered key or SSH refuses it as too open. An encrypted key becomes a crackable hash via `ssh2john`, see [[09C - Hash Cracking]].
 
 ## SMTP - 25 / 465 / 587
 
@@ -63,15 +63,15 @@ nslookup ns1.<domain> $IP         # map a nameserver / discover DC hostnames
 ```
 
 > [!note]
-> Zone transfers are usually blocked, but always try. Add any hostnames you discover to `/etc/hosts` so name-based vhosts resolve ([[Web Enumeration]]).
+> Zone transfers are usually blocked, but always try. Add any hostnames you discover to `/etc/hosts` so name-based vhosts resolve ([[02B - Web Enumeration]]).
 
 ## HTTP(S) - 80 / 443 / 8080 / 8443
 
-Any web port goes to [[Web Enumeration]]. It is the most common foothold surface.
+Any web port goes to [[02B - Web Enumeration]]. It is the most common foothold surface.
 
 ## Kerberos - 88
 
-Port 88 open means this host is a Domain Controller. Treat the whole AD set as one objective, go to [[AD Enumeration]].
+Port 88 open means this host is a Domain Controller. Treat the whole AD set as one objective, go to [[03D - AD Enumeration]].
 
 ## RPC / NetBIOS / SMB - 111 / 135 / 139 / 445
 
@@ -100,7 +100,7 @@ crackmapexec smb $IP -u guest -p '' --rid-brute      # RID-cycle usernames when 
 > Inside smbclient: `recurse ON; prompt OFF; mget *` pulls a share recursively.
 
 > [!note]
-> `-N` is a null session. `--rid-brute` recovers usernames even when you cannot list shares. SMB signing disabled signals relay potential ([[Responder and NTLM Relay]], lab only). `smb-vuln-ms17-010` → EternalBlue ([[Famous Exploits Lookup]]). Run several tools, they disagree: crackmapexec → smbmap → smbclient → enum4linux-ng. Deeper RPC-based user/group enumeration lives in [[SNMP LDAP RPC]]. Loot readable/writable shares via [[Finding Credentials]].
+> `-N` is a null session. `--rid-brute` recovers usernames even when you cannot list shares. SMB signing disabled signals relay potential ([[06B - Responder & NTLM Relay]], lab only). `smb-vuln-ms17-010` → EternalBlue ([[00D - Famous Exploits Lookup]]). Run several tools, they disagree: crackmapexec → smbmap → smbclient → enum4linux-ng. Deeper RPC-based user/group enumeration lives in [[03C - SNMP, LDAP, RPC]]. Loot readable/writable shares via [[05D - Finding Credentials]].
 
 ## LDAP(S) - 389 / 636 / 3268 / 3269
 
@@ -111,7 +111,7 @@ ldapsearch -x -H ldap://$IP -b "DC=corp,DC=com"      # anonymous full dump
 ```
 
 > [!note]
-> Full command reference (base-DN discovery, authenticated user filter, the `description`/`info` cred hunt) is in [[SNMP LDAP RPC]]. Then continue in [[AD Enumeration]].
+> Full command reference (base-DN discovery, authenticated user filter, the `description`/`info` cred hunt) is in [[03C - SNMP, LDAP, RPC]]. Then continue in [[03D - AD Enumeration]].
 
 ## MSSQL - 1433
 
@@ -123,7 +123,7 @@ impacket-mssqlclient sa:'<pw>'@$IP -windows-auth
 ```
 
 > [!note]
-> Inside the client, `enable_xp_cmdshell` (or `EXEC sp_configure 'xp_cmdshell',1; RECONFIGURE;`) turns on command exec, then `xp_cmdshell 'whoami'`. That runs as the SQL service account, which very often holds `SeImpersonate` → straight to [[Windows Privilege Escalation]].
+> Inside the client, `enable_xp_cmdshell` (or `EXEC sp_configure 'xp_cmdshell',1; RECONFIGURE;`) turns on command exec, then `xp_cmdshell 'whoami'`. That runs as the SQL service account, which very often holds `SeImpersonate` → straight to [[05C - Windows Privilege Escalation]].
 
 ## MySQL / MariaDB - 3306
 
@@ -141,7 +141,7 @@ SELECT @@datadir;
 ```
 
 > [!note]
-> `mysql.user` holds crackable account hashes ([[Hash Cracking]]). `secure_file_priv` empty/NULL means `LOAD_FILE`/`INTO OUTFILE` are usable for file read/write, see [[SQL Injection]].
+> `mysql.user` holds crackable account hashes ([[09C - Hash Cracking]]). `secure_file_priv` empty/NULL means `LOAD_FILE`/`INTO OUTFILE` are usable for file read/write, see [[02G - SQL Injection]].
 
 ## PostgreSQL - 5432
 
@@ -169,7 +169,7 @@ sudo mount -t nfs $IP:/export /tmp/nfs -o nolock
 ```
 
 > [!note]
-> An export marked `no_root_squash` is the prize, files you create as root on your box keep root ownership on the share, enabling the local-root technique in [[Linux Privilege Escalation]]. Even without it, exports often hold SSH keys, configs, backups ([[Finding Credentials]]).
+> An export marked `no_root_squash` is the prize, files you create as root on your box keep root ownership on the share, enabling the local-root technique in [[05B - Linux Privilege Escalation]]. Even without it, exports often hold SSH keys, configs, backups ([[05D - Finding Credentials]]).
 
 ## RDP 3389 / WinRM 5985 / VNC 5900 (creds-in-hand)
 
@@ -183,11 +183,11 @@ evil-winrm -i $IP -u user -p 'pass' -s /opt/scripts/ -e /opt/exes/   # preload t
 ```
 
 > [!note]
-> WinRM (5985) plus a valid credential or hash is one of the easiest shells there is, always test it when you have a Windows credential. With `-s`, use `Invoke-Binary` / dot-source PowerShell (PowerView, Rubeus) straight into memory. See [[Rubeus]].
+> WinRM (5985) plus a valid credential or hash is one of the easiest shells there is, always test it when you have a Windows credential. With `-s`, use `Invoke-Binary` / dot-source PowerShell (PowerView, Rubeus) straight into memory. See [[11B - Rubeus]].
 
 ## See Also
 
-- [[Network Scanning]] for the scan that populates this
-- [[SNMP LDAP RPC]] for those three protocols in depth
-- [[Master Routing Table]] for the finding → action index
-- Source: [[OSCP Field Manual]] section 2.1
+- [[01B - Network Scanning]] for the scan that populates this
+- [[03C - SNMP, LDAP, RPC]] for those three protocols in depth
+- [[00C - Master Routing Table]] for the finding → action index
+- Source: *OSCP Field Manual* section 2.1

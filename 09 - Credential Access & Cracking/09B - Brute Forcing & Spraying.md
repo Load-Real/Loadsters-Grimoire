@@ -44,8 +44,8 @@ crackmapexec smb $IP -u user -H <NTLM> --local-auth       # validate a hash
 
 ## See Also
 
-- [[Hash Cracking]] for cracking anything you dump, then spray the plaintext
-- [[Wordlists and Generation]] for the lists these consume
-- [[Finding Credentials]] and [[Post-Exploitation Loot Loop]] for the reuse cycle
-- [[AD Attacks]] for the AD-specific spraying (mind the lockout policy)
+- [[09C - Hash Cracking]] for cracking anything you dump, then spray the plaintext
+- [[09D - Wordlists & Generation]] for the lists these consume
+- [[05D - Finding Credentials]] and [[05AA - Post-Exploitation Loot Loop]] for the reuse cycle
+- [[03E - AD Attacks]] for the AD-specific spraying (mind the lockout policy)
 - Source: [[OSCP Field Manual]] section 2.3

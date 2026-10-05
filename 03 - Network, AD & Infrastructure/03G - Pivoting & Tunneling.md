@@ -52,7 +52,7 @@ proxychains crackmapexec smb 172.16.5.0/24                 # drive a tool throug
 ```
 
 > [!note]
-> Over SOCKS you must use TCP-connect nmap (`nmap -sT -Pn`), SYN scans do not traverse a proxy. Set proxychains to `socks5 127.0.0.1 1080` ([[Environment Setup]]).
+> Over SOCKS you must use TCP-connect nmap (`nmap -sT -Pn`), SYN scans do not traverse a proxy. Set proxychains to `socks5 127.0.0.1 1080` ([[11AAA - Environment Setup]]).
 
 ## SSH-based (when you have SSH creds on a Linux pivot)
 
@@ -85,7 +85,7 @@ arp -a                   # neighbor hosts your box cannot ping (often next targe
 
 ## See Also
 
-- [[Network Scanning]] for scanning the newly reachable subnet (use `-sT -Pn` over SOCKS)
-- [[Post-Exploitation Loot Loop]] for the recurse-into-new-network cycle
-- [[Environment Setup]] for the proxychains config
-- Source: [[OSCP Field Manual]] sections 11.2, 11.3
+- [[01B - Network Scanning]] for scanning the newly reachable subnet (use `-sT -Pn` over SOCKS)
+- [[05AA - Post-Exploitation Loot Loop]] for the recurse-into-new-network cycle
+- [[11AAA - Environment Setup]] for the proxychains config
+- Source: *OSCP Field Manual* sections 11.2, 11.3

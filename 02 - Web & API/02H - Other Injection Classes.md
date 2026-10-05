@@ -31,10 +31,10 @@ Below is a useful testing tree to identify the specific templating engine behind
 ![[SSTI_Tree.png]]
 
 > [!note]
-> SSTI is engine-specific once confirmed. Jinja2 has a well-known `__globals__` → `os.popen` chain to RCE, with WAF-avoiding payloads on PayloadsAllTheThings ([[Reference Sites]]). On OSCP, treat SSTI as a rabbit-hole signal unless `{{7*7}}` clearly returns `49`. Confirm before investing time, this is exactly the kind of path that eats an hour for nothing.
+> SSTI is engine-specific once confirmed. Jinja2 has a well-known `__globals__` → `os.popen` chain to RCE, with WAF-avoiding payloads on PayloadsAllTheThings ([[00B - References]]). On OSCP, treat SSTI as a rabbit-hole signal unless `{{7*7}}` clearly returns `49`. Confirm before investing time, this is exactly the kind of path that eats an hour for nothing.
 
 ## See Also
 
-- [[Web Enumeration]] for finding the input
-- [[Finding Credentials]] for what XXE file-read should hunt for
-- Source: [[OSCP Field Manual]] section 3.6
+- [[02B - Web Enumeration]] for finding the input
+- [[05D - Finding Credentials]] for what XXE file-read should hunt for
+- Source: *OSCP Field Manual* section 3.6

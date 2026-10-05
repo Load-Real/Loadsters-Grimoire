@@ -50,7 +50,7 @@ Each route writes your PHP somewhere the vulnerable `include()` will later read,
 ```
 
 > [!note]
-> Access-log poisoning via the User-Agent is the most common and reliable route on OSCP-style boxes. Detailed PoC steps live on HackTricks and PayloadsAllTheThings (see [[Reference Sites]]), this is the map of which to reach for. Once you have code execution, pull a proper shell with [[Reverse Shells]].
+> Access-log poisoning via the User-Agent is the most common and reliable route on OSCP-style boxes. Detailed PoC steps live on HackTricks and PayloadsAllTheThings (see [[00B - References]]), this is the map of which to reach for. Once you have code execution, pull a proper shell with [[05E - Reverse Shells]].
 
 ## RFI (only when allow_url_include=On)
 
@@ -59,11 +59,11 @@ Each route writes your PHP somewhere the vulnerable `include()` will later read,
 ```
 
 > [!note]
-> Far rarer than LFI on modern targets since remote includes are off by default, but trivial when enabled: the target pulls and runs a file you host. Serve it with the HTTP one-liner from [[High-Frequency One-Liners]].
+> Far rarer than LFI on modern targets since remote includes are off by default, but trivial when enabled: the target pulls and runs a file you host. Serve it with the HTTP one-liner from [[11AA - High-Frequency One-Liners]].
 
 ## See also
 
-- [[Web Enumeration]] for finding the vulnerable parameter
-- [[Reverse Shells]] for the payload you trigger once you have RCE
-- [[Finding Credentials]] for what to grep out of source you read
-- Source: [[OSCP Field Manual]] section 3.1
+- [[02B - Web Enumeration]] for finding the vulnerable parameter
+- [[05E - Reverse Shells]] for the payload you trigger once you have RCE
+- [[05D - Finding Credentials]] for what to grep out of source you read
+- Source: *OSCP Field Manual* section 3.1

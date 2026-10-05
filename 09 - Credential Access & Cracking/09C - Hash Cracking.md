@@ -6,7 +6,7 @@ tags:
   - hashcat
   - john
 ---
-> *Offline Hash Cracking:* Turning a recovered hash into a plaintext password. Trigger: you pulled a hash from a dump, a file, or a roast. Identify it, then crack with the right mode. Discipline, the moment a password cracks, stop and spray it everywhere ([[Brute Forcing and Spraying]]) before continuing.
+> *Offline Hash Cracking:* Turning a recovered hash into a plaintext password. Trigger: you pulled a hash from a dump, a file, or a roast. Identify it, then crack with the right mode. Discipline, the moment a password cracks, stop and spray it everywhere ([[09B - Brute Forcing & Spraying]]) before continuing.
 
 ## Hashcat (GPU, the default)
 
@@ -17,7 +17,7 @@ hashcat -m <mode> hash.txt /usr/share/wordlists/rockyou.txt -r /usr/share/hashca
 ```
 
 > [!note]
-> Common modes: `0` MD5, `100` SHA1, `1000` NTLM, `1800` sha512crypt, `3200` bcrypt, `5600` NetNTLMv2, `13100` Kerberoast TGS, `18200` AS-REP. Full list on the hashcat example-hashes page ([[Reference Sites]]). Format-specific `*2john` helpers turn files into crackable hashes: `zip2john`, `ssh2john`, `keepass2john`, `office2john`, `rar2john`.
+> Common modes: `0` MD5, `100` SHA1, `1000` NTLM, `1800` sha512crypt, `3200` bcrypt, `5600` NetNTLMv2, `13100` Kerberoast TGS, `18200` AS-REP. Full list on the hashcat example-hashes page ([[00B - References]]). Format-specific `*2john` helpers turn files into crackable hashes: `zip2john`, `ssh2john`, `keepass2john`, `office2john`, `rar2john`.
 
 ## John (CPU fallback)
 
@@ -36,7 +36,7 @@ john --incremental hash.txt                                         # pure brute
 
 ## See Also
 
-- [[Brute Forcing and Spraying]] for what to do the instant a hash cracks
-- [[Wordlists and Generation]] for the lists and rules
-- [[AD Attacks]] (Kerberoast/AS-REP produce `-m 13100`/`-m 18200`), [[Finding Credentials]] (SAM, shadow, KeePass)
+- [[09B - Brute Forcing & Spraying]] for what to do the instant a hash cracks
+- [[09D - Wordlists & Generation]] for the lists and rules
+- [[03E - AD Attacks]] (Kerberoast/AS-REP produce `-m 13100`/`-m 18200`), [[05D - Finding Credentials]] (SAM, shadow, KeePass)
 - Source: [[OSCP Field Manual]] section 2.3

@@ -30,11 +30,11 @@ impacket-ntlmrelayx -tf targets.txt -smb2support
 ```
 
 > [!note]
-> `ntlmrelayx` forwards the auth to a target where SMB signing is disabled (the `smb-security-mode` finding from [[Service Enumeration]] tells you which). The Windows-side analog is `Inveigh`. These feed straight into [[AD Lateral Movement and Persistence]] once you have a hash or a relayed session.
+> `ntlmrelayx` forwards the auth to a target where SMB signing is disabled (the `smb-security-mode` finding from [[03B - Service Enumeration (Ports)]] tells you which). The Windows-side analog is `Inveigh`. These feed straight into [[03F - AD Lateral Movements & Persistence]] once you have a hash or a relayed session.
 
 ## See Also
 
-- [[AD Attacks]] and [[AD Lateral Movement and Persistence]] for the exam-legal AD chain
-- [[Hash Cracking]] for the `-m 5600` NetNTLMv2 crack
-- [[Service Enumeration]] for spotting SMB-signing-disabled targets
+- [[03E - AD Attacks]] and [[03F - AD Lateral Movements & Persistence]] for the exam-legal AD chain
+- [[09C - Hash Cracking]] for the `-m 5600` NetNTLMv2 crack
+- [[03B - Service Enumeration (Ports)]] for spotting SMB-signing-disabled targets
 - Source: [[OSCP Field Manual]] section 7.7

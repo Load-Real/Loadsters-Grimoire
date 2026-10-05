@@ -37,11 +37,11 @@ Content-Type tamper:    in Burp, set Content-Type: image/png while the body stay
 > `GIF89a;` as a plain-text prefix at the top of the file works for GIF checks too.
 
 > [!note]
-> After a successful upload, find where the file landed (feroxbuster the uploads directory), browse to it to confirm execution, then use it to pull a proper reverse shell ([[Reverse Shells]]). Stack-specific: IIS uses `.aspx` (or a `web.config`/`.master` RCE), Tomcat uses `.jsp`/`.war` (see [[Admin Panels and Default Creds]] for the Tomcat manager route).
+> After a successful upload, find where the file landed (feroxbuster the uploads directory), browse to it to confirm execution, then use it to pull a proper reverse shell ([[05E - Reverse Shells]]). Stack-specific: IIS uses `.aspx` (or a `web.config`/`.master` RCE), Tomcat uses `.jsp`/`.war` (see [[02F - Admin Panels & Default Creds]] for the Tomcat manager route).
 
 ## See Also
 
-- [[Web Enumeration]] for finding the upload form and the uploads directory
-- [[Reverse Shells]] and [[msfvenom Payloads]] for the payload you upload
-- [[Admin Panels and Default Creds]] for Tomcat WAR / Jenkins / phpMyAdmin file-write routes
-- Source: [[OSCP Field Manual]] section 3.3
+- [[02B - Web Enumeration]] for finding the upload form and the uploads directory
+- [[05E - Reverse Shells]] and [[08B - MSFvenom Payloads]] for the payload you upload
+- [[02F - Admin Panels & Default Creds]] for Tomcat WAR / Jenkins / phpMyAdmin file-write routes
+- Source: *OSCP Field Manual* section 3.3

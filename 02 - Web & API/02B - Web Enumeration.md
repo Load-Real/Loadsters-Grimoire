@@ -5,7 +5,7 @@ tags:
   - web
   - enumeration
 ---
-> *Web Attack-surface Enumeration:* Fingerprint the stack, then discover hidden content, vhosts, parameters, and CMS weaknesses. Reach for this the moment any HTTP/S port is open. Web is the most common foothold surface, so enumerate it thoroughly before calling it a dead end. Everything here feeds [[SQL Injection]], [[LFI RFI and Path Traversal]], [[File Upload to Webshell]], and the login/upload forms that lead to a shell.
+> *Web Attack-surface Enumeration:* Fingerprint the stack, then discover hidden content, vhosts, parameters, and CMS weaknesses. Reach for this the moment any HTTP/S port is open. Web is the most common foothold surface, so enumerate it thoroughly before calling it a dead end. Everything here feeds [[02G - SQL Injection]], [[02C - LFI, RFI & Path Traversal]], [[02E - File Upload to Webshell]], and the login/upload forms that lead to a shell.
 
 ## Fingerprint Before You Fuzz
 
@@ -58,7 +58,7 @@ ffuf -u "http://$IP/page.php?FUZZ=test" -w /usr/share/seclists/Discovery/Web-Con
 ```
 
 > [!note]
-> A newly discovered parameter that changes the response is your lead into the injection notes ([[LFI RFI and Path Traversal]], [[SQL Injection]], [[Command Injection]]).
+> A newly discovered parameter that changes the response is your lead into the injection notes ([[02C - LFI, RFI & Path Traversal]], [[02G - SQL Injection]], [[02D - Command Injection]]).
 
 ## CMS-specific Scanners
 
@@ -72,11 +72,11 @@ joomscan -u http://$IP
 ```
 
 > [!note]
-> Results route onward: a login page to [[Brute Forcing and Spraying]] and [[SQL Injection]], an upload form to [[File Upload to Webshell]], a version string to [[CVE Triage]]. WordPress: once authenticated, editing a plugin or theme PHP (`akismet.php`, `themes/<t>/404.php`) with a webshell is the classic RCE, see [[File Upload to Webshell]].
+> Results route onward: a login page to [[09B - Brute Forcing & Spraying]] and [[02G - SQL Injection]], an upload form to [[02E - File Upload to Webshell]], a version string to [[01C - CVE Triage]]. WordPress: once authenticated, editing a plugin or theme PHP (`akismet.php`, `themes/<t>/404.php`) with a webshell is the classic RCE, see [[02E - File Upload to Webshell]].
 
 ## See Also
 
-- [[Network Scanning]] for the port scan that gets you here
-- [[SQL Injection]], [[LFI RFI and Path Traversal]], [[Command Injection]], [[File Upload to Webshell]], [[Other Injection Classes]] for turning surface into a shell
-- [[Admin Panels and Default Creds]] for panels you discover
-- Source: [[OSCP Field Manual]] section 2.2
+- [[01B - Network Scanning]] for the port scan that gets you here
+- [[02G - SQL Injection]], [[02C - LFI, RFI & Path Traversal]], [[02D - Command Injection]], [[02E - File Upload to Webshell]], [[02H - Other Injection Classes]] for turning surface into a shell
+- [[02F - Admin Panels & Default Creds]] for panels you discover
+- Source: *OSCP Field Manual* section 2.2

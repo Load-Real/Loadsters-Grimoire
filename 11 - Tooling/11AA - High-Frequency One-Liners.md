@@ -19,6 +19,6 @@ base64 -w0 file                                 # encode for copy-paste transfer
 
 ## See Also
 
-- [[File Transfer]] for choosing between HTTP and SMB
-- [[Reverse Shells]] for the listener's other half
+- [[05G - File Transfer]] for choosing between HTTP and SMB
+- [[05E - Reverse Shells]] for the listener's other half
 - Source: [[OSCP Field Manual]] section 10.1

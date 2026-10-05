@@ -47,11 +47,11 @@ cewl http://$IP -d 4 --with-numbers -w cewlpasswords.txt      # include numbers
 ```
 
 > [!note]
-> Feed the result to hashcat with a rule (`-r best64.rule`) to cover capitalization and `!`/number suffixes ([[Hash Cracking]]). For AD username formats, generate permutations (`first`, `flast`, `f.last`, `firstl`) from real names, `username-anarchy` automates it.
+> Feed the result to hashcat with a rule (`-r best64.rule`) to cover capitalization and `!`/number suffixes ([[09C - Hash Cracking]]). For AD username formats, generate permutations (`first`, `flast`, `f.last`, `firstl`) from real names, `username-anarchy` automates it.
 
 ## See Also
 
-- [[Hash Cracking]] and [[Brute Forcing and Spraying]] which consume these
-- [[Web Enumeration]] for the discovery lists
-- [[Reference Sites]] for SecLists and PayloadsAllTheThings
+- [[09C - Hash Cracking]] and [[09B - Brute Forcing & Spraying]] which consume these
+- [[02B - Web Enumeration]] for the discovery lists
+- [[00B - References]] for SecLists and PayloadsAllTheThings
 - Source: [[OSCP Field Manual]] sections 9.0, 9.1

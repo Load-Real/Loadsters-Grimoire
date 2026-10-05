@@ -8,7 +8,7 @@ tags:
 > *AD Enumeration:* Mapping the domain from a given credential (or none) so you can see the path to Domain Admin before you touch anything. This is the first move of the AD chain, foothold → enumerate → get creds → move laterally → reach the DC. Trigger: port 88/389 anywhere, or a domain-joined box. Treat all machines in the set as one objective.
 
 > [!danger] OSCP Note
-> Responder poisoning and all LLMNR/NBT-NS/mDNS answering are exam-banned. The relay flows live in [[Responder and NTLM Relay]] and are lab-only. Everything in this note is exam-legal.
+> Responder poisoning and all LLMNR/NBT-NS/mDNS answering are exam-banned. The relay flows live in [[06B - Responder & NTLM Relay]] and are lab-only. Everything in this note is exam-legal.
 
 ## Unauthenticated (DC IP known)
 
@@ -22,7 +22,7 @@ nslookup -type=srv _ldap._tcp.dc._msdcs.corp.com $IP   # find DCs via DNS SRV
 ```
 
 > [!note]
-> `kerbrute userenum` is safe to run first, it validates usernames against Kerberos without triggering lockouts, giving you a user list for spraying and AS-REP roasting ([[AD Attacks]]).
+> `kerbrute userenum` is safe to run first, it validates usernames against Kerberos without triggering lockouts, giving you a user list for spraying and AS-REP roasting ([[03E - AD Attacks]]).
 
 ## Authenticated: BloodHound Collection
 
@@ -36,7 +36,7 @@ bloodhound-python -u user -p 'pass' -d corp.com -ns $IP -c all --zip   # remote 
 ```
 
 > [!note]
-> `-c all` gathers every collection method, the `.zip` imports into the BloodHound GUI (setup in [[Environment Setup]]). Mark owned nodes (right-click → Mark as Owned) so path queries start from what you control.
+> `-c all` gathers every collection method, the `.zip` imports into the BloodHound GUI (setup in [[11AAA - Environment Setup]]). Mark owned nodes (right-click → Mark as Owned) so path queries start from what you control.
 
 ## Manual Authenticated Enumeration (fallback + confirmation)
 
@@ -50,7 +50,7 @@ crackmapexec smb $IP -u user -p pass --pass-pol           # lockout BEFORE spray
 ```
 
 > [!note]
-> `--pass-pol` tells you the lockout threshold before you spray, critical so you do not lock accounts. `--loggedon-users` finds a box where a Domain Admin is logged in, a credential-dump target ([[AD Lateral Movement and Persistence]]). Full domain-user/group enumeration lives in [[SNMP LDAP RPC]] (rpcclient). Snaffler is the fastest way to surface passwords in shares from a foothold.
+> `--pass-pol` tells you the lockout threshold before you spray, critical so you do not lock accounts. `--loggedon-users` finds a box where a Domain Admin is logged in, a credential-dump target ([[03F - AD Lateral Movements & Persistence]]). Full domain-user/group enumeration lives in [[03C - SNMP, LDAP, RPC]] (rpcclient). Snaffler is the fastest way to surface passwords in shares from a foothold.
 
 ## BloodHound + Cypher
 
@@ -78,11 +78,11 @@ MATCH (u:User) RETURN u.name
 ```
 
 > [!tip]
-> `bloodhound.readthedocs.io` and the hausec Cypher cheatsheet are the readable references. `wadcoms.github.io` and `thehacker.recipes` map each BloodHound edge to the exact command that abuses it, that mapping is the whole point of [[AD Attacks]].
+> `bloodhound.readthedocs.io` and the hausec Cypher cheatsheet are the readable references. `wadcoms.github.io` and `thehacker.recipes` map each BloodHound edge to the exact command that abuses it, that mapping is the whole point of [[03E - AD Attacks]].
 
 ## See Also
 
-- [[AD Attacks]] for turning enumeration into creds and privilege
-- [[AD Lateral Movement and Persistence]] for moving once you have a hash
-- [[Service Enumeration]] and [[SNMP LDAP RPC]] for the port-level entry points
-- Source: [[OSCP Field Manual]] sections 7.0 and 7.0.1
+- [[03E - AD Attacks]] for turning enumeration into creds and privilege
+- [[03F - AD Lateral Movements & Persistence]] for moving once you have a hash
+- [[03B - Service Enumeration (Ports)]] and [[03C - SNMP, LDAP, RPC]] for the port-level entry points
+- Source: *OSCP Field Manual* sections 7.0 and 7.0.1

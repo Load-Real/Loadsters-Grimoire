@@ -55,7 +55,7 @@ The workhorse when output is reflected on the page. Ordered: count columns, find
 ```
 
 > [!note]
-> `information_schema` is the map of every table and column. `group_concat` collapses many rows into one reflected cell, and `0x3a` is a colon separator so the output reads `user:hash`. Any hashes you pull go to [[Hash Cracking]].
+> `information_schema` is the map of every table and column. `group_concat` collapses many rows into one reflected cell, and `0x3a` is a colon separator so the output reads `user:hash`. Any hashes you pull go to [[09C - Hash Cracking]].
 
 ## Error-Based (output not reflected)
 
@@ -81,7 +81,7 @@ When UNION output is not visible but the page surfaces SQL errors, force the val
 ```
 
 > [!note]
-> `xp_cmdshell` runs OS commands as the SQL service account, which on Windows very often holds `SeImpersonate` and leads straight into [[Windows Privilege Escalation]]. `LOAD_FILE` reads any file the DB user can reach. `INTO OUTFILE` drops a webshell when FILE privilege and a known writable webroot line up, and is blocked when `secure_file_priv` is set.
+> `xp_cmdshell` runs OS commands as the SQL service account, which on Windows very often holds `SeImpersonate` and leads straight into [[05C - Windows Privilege Escalation]]. `LOAD_FILE` reads any file the DB user can reach. `INTO OUTFILE` drops a webshell when FILE privilege and a known writable webroot line up, and is blocked when `secure_file_priv` is set.
 
 ## Filter and WAF Bypass
 
@@ -103,7 +103,7 @@ UN/**/ION SE/**/LECT      or   /*!50000UNION*/ /*!50000SELECT*/
 
 ## See Also
 
-- [[Command Injection]] and [[File Upload]] for the other two common web-to-shell paths
-- [[Hash Cracking]] for anything you dump
-- [[Windows Privilege Escalation]] for the `xp_cmdshell` follow-on
-- Source: [[OSCP Field Manual]] section 3.0
+- [[02D - Command Injection]] and [[02E - File Upload to Webshell]] for the other two common web-to-shell paths
+- [[09C - Hash Cracking]] for anything you dump
+- [[05C - Windows Privilege Escalation]] for the `xp_cmdshell` follow-on
+- Source: *OSCP Field Manual* section 3.0

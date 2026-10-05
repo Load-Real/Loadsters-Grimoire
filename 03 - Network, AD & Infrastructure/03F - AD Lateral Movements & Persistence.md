@@ -6,7 +6,7 @@ tags:
   - dcsync
   - persistence
 ---
-> *AD Lateral Movement and Domain Compromise:* Using a credential or hash to move between hosts, harvest more credentials, and reach the DC. Trigger: you have creds or a hash for an account that is local admin somewhere (BloodHound "AdminTo"/"CanRDP"), or you have local/domain admin on a host. This is the payoff of [[AD Attacks]].
+> *AD Lateral Movement and Domain Compromise:* Using a credential or hash to move between hosts, harvest more credentials, and reach the DC. Trigger: you have creds or a hash for an account that is local admin somewhere (BloodHound "AdminTo"/"CanRDP"), or you have local/domain admin on a host. This is the payoff of [[03E - AD Attacks]].
 
 ## Lateral Movement
 
@@ -27,7 +27,7 @@ Enter-PSSession -ComputerName TARGET -Credential $cred
 ```
 
 > [!note]
-> psexec is reliable but loud, wmiexec is quieter, evil-winrm needs WinRM (5985). Use CME first to find which hosts the credential is admin on, then pick a shell method. Kerberos variants (overpass-the-hash, pass-the-ticket) are the fallback when NTLM auth is blocked but Kerberos is allowed, drive them with [[Rubeus]].
+> psexec is reliable but loud, wmiexec is quieter, evil-winrm needs WinRM (5985). Use CME first to find which hosts the credential is admin on, then pick a shell method. Kerberos variants (overpass-the-hash, pass-the-ticket) are the fallback when NTLM auth is blocked but Kerberos is allowed, drive them with [[11B - Rubeus]].
 
 ## Credential Access & Domain Compromise
 
@@ -47,7 +47,7 @@ impacket-secretsdump corp.com/DAuser:'pass'@<DC-IP> -just-dc                    
 > lsadump::dcsync /domain:corp.local /user:Administrator
 > lsadump::dcsync /domain:corp.local /user:krbtgt          :: krbtgt for Golden Ticket
 > ```
-> Key-import error? Use the older `mimikatz_trunk` build ([[Reference Sites]]).
+> Key-import error? Use the older `mimikatz_trunk` build ([[00B - References]]).
 
 > [!note]
 > Run `secretsdump` even on non-DCs, a box a Domain Admin logged into may cache their creds. DCSync abuses the replication right (`GetChangesAll`) to ask the DC for a user's hash as if you were another DC, so no code runs on the DC. Administrator hash from the DC = domain owned, pass-the-hash into the DC and grab the flag.
@@ -61,15 +61,15 @@ Trigger: you are admin on the DC but want the whole AD database and direct LSASS
 
 ## Persistence (presently light only)
 
-On OSCP, just note a working credential or hash so a dropped shell is not fatal. No advanced persistence is needed. Golden/Silver tickets ([[AD Attacks]]) are the persistence tools you reach for after full compromise.
+On OSCP, just note a working credential or hash so a dropped shell is not fatal. No advanced persistence is needed. Golden/Silver tickets ([[03E - AD Attacks]]) are the persistence tools you reach for after full compromise.
 
 > [!TODO]
 Add to this as I build out my own persistence capabilities
 
 ## See Also
 
-- [[AD Attacks]] for how you get the hash or the DCSync right in the first place
-- [[Rubeus]] and [[BloodyAD]] for on-host and remote variants
-- [[Post-Exploitation Loot Loop]] for the reuse cycle that drives all of this
-- [[Finding Credentials]] for host-level looting once you land
-- Source: [[OSCP Field Manual]] sections 7.2, 7.3
+- [[03E - AD Attacks]] for how you get the hash or the DCSync right in the first place
+- [[11B - Rubeus]] and [[11C - BloodyAD]] for on-host and remote variants
+- [[05AA - Post-Exploitation Loot Loop]] for the reuse cycle that drives all of this
+- [[05D - Finding Credentials]] for host-level looting once you land
+- Source: *OSCP Field Manual* sections 7.2, 7.3

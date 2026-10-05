@@ -42,6 +42,6 @@ who$@ami             (empty variable expansion)
 
 ## See Also
 
-- [[Web Enumeration]] for finding the injectable input
-- [[Reverse Shells]] to upgrade RCE into an interactive shell (Base64-encode when the sink chokes on pipes)
-- Source: [[OSCP Field Manual]] section 3.2
+- [[02B - Web Enumeration]] for finding the injectable input
+- [[05E - Reverse Shells]] to upgrade RCE into an interactive shell (Base64-encode when the sink chokes on pipes)
+- Source: *OSCP Field Manual* section 3.2

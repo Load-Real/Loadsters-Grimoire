@@ -35,7 +35,7 @@ docker compose logs | grep -i "Initial Password"     # grab the generated admin 
 ```
 
 > [!note]
-> Browse `http://localhost:8080`, log in as `admin` with that password. Collect with `bloodhound-python` ([[AD Enumeration]]) and drag the `.zip` onto the UI. Legacy neo4j build: `sudo neo4j start`, browse `http://localhost:7474` to set the password, launch `bloodhound`, connect to `bolt://localhost:7687`.
+> Browse `http://localhost:8080`, log in as `admin` with that password. Collect with `bloodhound-python` ([[03D - AD Enumeration]]) and drag the `.zip` onto the UI. Legacy neo4j build: `sudo neo4j start`, browse `http://localhost:7474` to set the password, launch `bloodhound`, connect to `bolt://localhost:7687`.
 
 ## ProxyChains & Reusable Listeners
 
@@ -44,10 +44,10 @@ sudo sed -i 's/^socks4.*/socks5 127.0.0.1 1080/' /etc/proxychains4.conf
 ```
 
 > [!warning]
-> The port must match your tunnel, chisel and `ssh -D` use 1080 here, some setups default to 9050. Verify it or every proxied command silently fails. Uncomment `dynamic_chain` in that file so a dead proxy does not kill the whole chain. Keep a `/opt/tools` dir pre-stocked with transfer-ready binaries (linpeas, winpeas, the Potatoes, SharpHound, Rubeus, chisel, ligolo, mimikatz, PowerView, nc.exe) and serve them with the HTTP one-liner ([[High-Frequency One-Liners]]).
+> The port must match your tunnel, chisel and `ssh -D` use 1080 here, some setups default to 9050. Verify it or every proxied command silently fails. Uncomment `dynamic_chain` in that file so a dead proxy does not kill the whole chain. Keep a `/opt/tools` dir pre-stocked with transfer-ready binaries (linpeas, winpeas, the Potatoes, SharpHound, Rubeus, chisel, ligolo, mimikatz, PowerView, nc.exe) and serve them with the HTTP one-liner ([[11AA - High-Frequency One-Liners]]).
 
 ## See Also
 
-- [[Pivoting and Tunneling]] for what the proxychains config is for
-- [[Tool Map]] and [[Reference Sites]] for what to install
+- [[03G - Pivoting & Tunneling]] for what the proxychains config is for
+- [[11AAAAA - Tool Map]] and [[00B - References]] for what to install
 - Source: [[OSCP Field Manual]] sections 10.2 to 10.4

@@ -25,12 +25,12 @@ tags:
 > [!note]
 > - **Tomcat `/manager/html`** → WAR deploy (above), JSP runs on the server.
 > - **Jenkins** → The Script Console runs Groovy on the server directly, instant execution if you can reach it.
-> - **phpMyAdmin** → The SQL tab can read and write files (subject to DB privileges), a route to a webshell or file read. See the file-write payloads in [[SQL Injection]].
-> - Any panel with a version string → [[CVE Triage]].
+> - **phpMyAdmin** → The SQL tab can read and write files (subject to DB privileges), a route to a webshell or file read. See the file-write payloads in [[02G - SQL Injection]].
+> - Any panel with a version string → [[01C - CVE Triage]].
 
 ## See Also
 
-- [[Web Enumeration]] for discovering panels
-- [[File Upload to Webshell]] and [[msfvenom Payloads]] for the payloads
-- [[Brute Forcing and Spraying]] when defaults fail but the login is bruteable
-- Source: [[OSCP Field Manual]] section 3.4
+- [[02B - Web Enumeration]] for discovering panels
+- [[02E - File Upload to Webshell]] and [[08B - MSFvenom Payloads]] for the payloads
+- [[09B - Brute Forcing & Spraying]] when defaults fail but the login is bruteable
+- Source: *OSCP Field Manual* section 3.4

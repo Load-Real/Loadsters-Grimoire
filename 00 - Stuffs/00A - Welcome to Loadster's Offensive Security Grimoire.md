@@ -18,7 +18,7 @@ I don't like scanning my notes for eons trying to find things, so I want to esta
 - **Tooling:** How to drive the instruments I test _with_. Burp, Horizon3, Terra, the my own machine environment. Also thin, links back to Surfaces for the "what."
 
 **How I Add to this Grimoire:**
-1. Mid-engagement, drop a rough capture in `00C - Inbox`. Do not stop to format.
+1. Mid-engagement, note something interesting/useful in my separate Google Doc. Do not stop to format.
 2. Paste the raw command or finding, plus a link to the source (HackTricks page, PayloadsAllTheThings, the platform's own docs).
 3. Later, during a cleanup pass, rewrite it into _my_ commands with my real flags, fit it to the note template, file it in the right bucket, and delete the Inbox copy.
 
