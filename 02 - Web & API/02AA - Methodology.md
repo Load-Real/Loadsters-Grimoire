@@ -27,7 +27,7 @@ The pass that often gets skipped. Run it every time, as a literal checklist.
 
 # Signal Catalog
 
-The direct fix for discarding things as benign. When you see hte left, you run the right, every time, no judgement about whether it "seems useful".
+The direct fix for discarding things as benign. When you see the left, you run the right, every time, no judgement about whether it "seems useful".
 
 | Signal                                                                 | Reflex                                                                                                                                                                                                                                                                                                                                           |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

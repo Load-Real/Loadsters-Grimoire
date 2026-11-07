@@ -12,10 +12,10 @@ tags:
 The instant the scope is fully established and the testing window begins, start everything slow in the background. **Do this before any manual poking.**
 
 ```
-[ ] nmap -p- -sC -sV against each host, plus top-UDP
-[ ] ffuf / feroxbuster content discovery per web root
-[ ] nuclei baseline (CVEs, misconfig, exposures)
-[ ] subdomain/vhost enum if in scope
+1) nmap -p- -sC -sV against each host, plus top-UDP
+2) ffuf / feroxbuster content discovery per web root
+3) nuclei baseline (CVEs, misconfig, exposures)
+4) subdomain/vhost enum if in scope
 ```
 
 > [!TIP] Wordlist Quality
