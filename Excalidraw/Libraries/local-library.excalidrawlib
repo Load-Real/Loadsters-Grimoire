@@ -1,0 +1,93 @@
+{
+  "type": "excalidrawlib",
+  "version": 2,
+  "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.29.1",
+  "libraryItems": [
+    {
+      "status": "unpublished",
+      "elements": [
+        {
+          "id": "jheztDiZ",
+          "type": "rectangle",
+          "x": 880.3672473551263,
+          "y": 397.5327439487596,
+          "width": 425.9472656250001,
+          "height": 206.572265625,
+          "angle": 0,
+          "strokeColor": "#1e1e1e",
+          "backgroundColor": "transparent",
+          "fillStyle": "solid",
+          "strokeWidth": 2,
+          "strokeStyle": "solid",
+          "roughness": 1,
+          "opacity": 100,
+          "groupIds": [],
+          "frameId": null,
+          "index": "aR",
+          "roundness": {
+            "type": 3
+          },
+          "seed": 328063212,
+          "version": 39,
+          "versionNonce": 1327524972,
+          "isDeleted": false,
+          "boundElements": [
+            {
+              "type": "text",
+              "id": "2Kjuri0B"
+            }
+          ],
+          "updated": 1795115743605,
+          "created": 1795115739281,
+          "link": null,
+          "locked": false,
+          "hasTextLink": false
+        },
+        {
+          "id": "2Kjuri0B",
+          "type": "text",
+          "x": 885.3672473551263,
+          "y": 402.5327439487596,
+          "width": 106.7598876953125,
+          "height": 25,
+          "angle": 0,
+          "strokeColor": "#1e1e1e",
+          "backgroundColor": "transparent",
+          "fillStyle": "solid",
+          "strokeWidth": 2,
+          "strokeStyle": "solid",
+          "roughness": 1,
+          "opacity": 100,
+          "groupIds": [],
+          "frameId": null,
+          "index": "aRV",
+          "roundness": null,
+          "seed": 19290836,
+          "version": 22,
+          "versionNonce": 1312647508,
+          "isDeleted": false,
+          "boundElements": [],
+          "updated": 1795115755768,
+          "created": 1795115743605,
+          "locked": false,
+          "text": "<box title>",
+          "rawText": "<box title>",
+          "fontSize": 20,
+          "baseFontSize": null,
+          "fontFamily": 5,
+          "textAlign": "left",
+          "verticalAlign": "top",
+          "containerId": "jheztDiZ",
+          "originalText": "<box title>",
+          "autoResize": true,
+          "lineHeight": 1.25,
+          "labelPosition": null,
+          "hasTextLink": false,
+          "link": null
+        }
+      ],
+      "id": "ICq0AcEVotRhHES2LjKy1",
+      "created": 1795115764137
+    }
+  ]
+}

@@ -3,5 +3,6 @@
   "theme": "obsidian",
   "enabledCssSnippets": [
     "center-images"
-  ]
+  ],
+  "showRibbon": true
 }
